@@ -1,6 +1,6 @@
   
   //state will be all moved to initalState in reducer folder
-  export const state = {
+  export const initialState = {
     additionalPrice: 0,
     car: {
       price: 26395,
@@ -17,8 +17,20 @@
     ]
   };
 
-  export const appReducer = (state = state, action) => {
+  export const appReducer = (state = initialState, action) => {
     switch(action.type){
+        case "ADD_FEATURE":
+            return{
+                ...state,
+                car: {
+                    ...state.car,
+                    features: [...state.car.features ] //or state.car.features.map()
+                }
+            }
+        case "REMOVE_FEATURE":
+            return{}
+        case "UPDATE_TOTAL":
+            return{}
         default:
             return state
     }
