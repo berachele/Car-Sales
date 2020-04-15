@@ -18,6 +18,25 @@ export const initialState = {
   export const carReducer = (state = initialState, action) => {
       console.log("State AND Action-->", state, action)
       switch(action.type){
+          case "ADD_FEATURE":
+              return{
+                  //spread state, 
+                  ...state,
+                  //car/price will be state.price + aF.price
+                  //car/features will take aF id from what's clicked and map through to show on f? 
+                  car: {
+                      ...state.car,
+                      features: [...state.car.features, action.payload]
+                
+                  }//end of car
+              }//end of ADD_F case
+            case "REMOVE_FEATURE":
+                return{
+                    ...state,
+                    car: {
+                        features: [...state.car.features - action.payload]
+                    }
+                }
           default:
               return state
       }
