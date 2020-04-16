@@ -28,8 +28,10 @@ export const initialState = {
                     ...state.car,
                     price: state.car.price + action.payload.price,
                     features: [...state.car.features, action.payload]
-                
-                  }//end of car
+                  },//end of car
+                  additionalFeatures: state.additionalFeatures.filter(feature=> 
+                    feature !== action.payload
+                    )
               }//end of ADD_F
             case "REMOVE_FEATURE":
                 return{
@@ -42,8 +44,8 @@ export const initialState = {
                         features: [...state.car.features.filter(feature=> 
                             feature !== action.payload
                         )]
-                        // features: [...state.car.features, action.payload] //this is readding to added state
-                    }//end of car
+                    },//end of car
+                    additionalFeatures: [...state.additionalFeatures, action.payload]
                 }//end of REMOVE_F
           default:
               return state
