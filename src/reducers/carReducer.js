@@ -20,23 +20,33 @@ export const initialState = {
       switch(action.type){
           case "ADD_FEATURE":
               return{
-                  //spread state, 
+                  //spread state,
                   ...state,
-                  //car/price will be state.price + aF.price
-                  //car/features will take aF id from what's clicked and map through to show on f? 
+                  //car/features will take from adtlFeature and add to features✅
+                  //car/price will add feature price✅
                   car: {
-                      ...state.car,
-                      features: [...state.car.features, action.payload]
+                    ...state.car,
+                    price: state.car.price + action.payload.price,
+                    features: [...state.car.features, action.payload]
                 
                   }//end of car
-              }//end of ADD_F case
-            case "REMOVE_FEATURE":
-                return{
-                    ...state,
-                    car: {
-                        features: [...state.car.features - action.payload]
-                    }
-                }
+              }//end of ADD_F
+            // case "REMOVE_FEATURE":
+            //     return{
+            //         ...state,
+            //         car: {
+            //             features: state.car.features.map(feature=> {
+            //                 if(feature === feature){
+            //                     return{
+            //                         ...feature - feature.action.payload
+            //                     }
+            //                 }else{
+            //                     return feature
+            //                 }
+            //             })
+            //             // features: [...state.car.features - action.payload] //this is readding to added state
+            //         }//end of car
+            //     }//end of REMOVE_F
           default:
               return state
       }
