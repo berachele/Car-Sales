@@ -1,40 +1,28 @@
 import React from 'react';
-
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
-const App = () => {
-  const state = {
-    additionalPrice: 0,
-    car: {
-      price: 26395,
-      name: '2019 Ford Mustang',
-      image:
-        'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
-      features: []
-    },
-    additionalFeatures: [
-      { id: 1, name: 'V-6 engine', price: 1500 },
-      { id: 2, name: 'Racing detail package', price: 1500 },
-      { id: 3, name: 'Premium sound system', price: 500 },
-      { id: 4, name: 'Rear spoiler', price: 250 }
-    ]
-  };
+import {connect} from "react-redux"
 
+const App = () => {
+
+  //functions to build out functionality (return action object)--> type: 'FROM-REDUCER'
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    //Onclick will remove from car/features
   };
 
   const buyItem = item => {
     // dipsatch an action here to add an item
+    //onClick addFeature move to car->features
   };
 
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={state.car} />
+        <Header car={state.car} /> {/* Will eventually change out state.car to props.car */}
         <AddedFeatures car={state.car} />
       </div>
       <div className="box">
@@ -44,5 +32,14 @@ const App = () => {
     </div>
   );
 };
+//create mapStateToProps here
+const mapStateToProps = state => {
+  return{
+    ...state,
+    additionalPrice: state.additionalPrice,
+    car: state.car,
+    additionalFeatures
+  }
+}
 
-export default App;
+export default connect(mapStateToProps, {})(App); //replace App with connect and two parameters
